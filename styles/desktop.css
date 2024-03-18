@@ -1,0 +1,251 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+@media screen and (max-width: 540px) {
+  body {
+    height: auto;
+    padding: 50px 10px;
+  }
+}
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;
+  height: 100%;
+  background-image: url(../assets/imgs/bg-main-desktop.png);
+  z-index: 0;
+}
+
+.main-wrapper {
+  display: grid;
+  grid-template-columns: 1.6fr 1.4fr;
+  width: 100%;
+  height: 100%;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  z-index: 10;
+}
+
+.front-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  width: 400px;
+  height: 220px;
+  padding: 20px 30px;
+  color: hsl(0, 0%, 100%);
+  background-image: url(../assets/imgs/bg-card-front.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+
+.card__logo {
+  width: 100%;
+  height: 60px;
+}
+
+.card__number {
+  align-self: flex-end;
+  font-size: 2.8rem;
+}
+
+.card__info-name-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1.4rem;
+}
+
+.card__name {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.back-card {
+  position: relative;
+  align-self: flex-end;
+  width: 400px;
+  height: 220px;
+  background-image: url(../assets/imgs/bg-card-back.png);
+  background-size: contain;
+  border-radius: 10px;
+}
+
+.cvc {
+  position: absolute;
+  right: 50px;
+  top: 43%;
+}
+
+.cvc-number {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: hsl(0, 0%, 100%);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+}
+
+.form__label {
+  margin: 20px 0 10px 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: hsl(278, 68%, 11%);
+}
+
+.form__input {
+  width: 55%;
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: hsl(270, 3%, 87%);
+  border: 1px solid hsl(270, 3%, 87%);
+  border-radius: 8px;
+  outline: none;
+}
+.form__input::-webkit-input-placeholder {
+  color: hsl(270, 3%, 87%);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.form__input:focus {
+  border: 1px solid hsl(278, 94%, 30%);
+}
+.form__input:hover {
+  cursor: pointer;
+}
+
+.date-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  width: 55%;
+  margin-top: 20px;
+}
+
+#month, #year {
+  margin: 10px 0 0;
+  width: 35%;
+}
+
+.cvc-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.cvc-wrapper .form__label {
+  margin-top: 0;
+}
+
+#cvc {
+  width: 100%;
+}
+
+.submit-btn {
+  width: 55%;
+  height: 40px;
+  margin-top: 20px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(278, 68%, 11%);
+  border: none;
+  border-radius: 8px;
+}
+.submit-btn:hover {
+  cursor: pointer;
+}
+
+.complete-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  display: none;
+  padding-left: 50px;
+}
+.complete-section div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 70%;
+}
+
+.complete__icon {
+  width: 60px;
+  height: 60px;
+}
+
+.complete__title {
+  margin: 0;
+  font-size: 2.8rem;
+  color: hsl(278, 68%, 11%);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.complete__message {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: hsl(279, 6%, 55%);
+}
+
+.complete-btn {
+  width: 75%;
+  height: 40px;
+  font-size: 1.4rem;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(278, 68%, 11%);
+  border: none;
+  border-radius: 8px;
+}
+.complete-btn:hover {
+  cursor: pointer;
+}
+
+.form-error {
+  display: none;
+  margin: 5px 0 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: hsl(0, 100%, 66%);
+}
+
+/*# sourceMappingURL=desktop.css.map */

@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+@media screen and (max-width: 540px) {
+  body {
+    height: auto;
+    padding: 50px 10px;
+  }
+}
+.front-card {
+  width: 380px;
+  height: 200px;
+}
+
+.card-number {
+  font-size: 2.6rem;
+}
+
+.back-card {
+  align-self: center;
+  width: 380px;
+  height: 200px;
+  background-repeat: no-repeat;
+}
+
+.cvc {
+  right: 60px;
+}
+
+.cvc-number {
+  font-size: 1.6rem;
+}
+
+.form {
+  padding-left: 20px;
+}
+
+.form__input, .date-info, .submit-btn {
+  width: 75%;
+}
+
+.complete-section {
+  padding: 0;
+}
+.complete-section div {
+  width: 100%;
+  gap: 25px;
+}
+
+@media screen and (width: 1024px) {
+  .back-card {
+    align-self: flex-end;
+  }
+  .complete__icon {
+    width: 80px;
+    height: 80px;
+  }
+  .complete__title {
+    font-size: 3.2rem;
+  }
+  .complete__message {
+    font-size: 1.8rem;
+  }
+  .complete-btn {
+    height: 50px;
+    font-size: 1.8rem;
+  }
+}
+
+/*# sourceMappingURL=tablet.css.map */

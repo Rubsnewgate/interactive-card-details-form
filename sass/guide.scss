@@ -1,0 +1,55 @@
+// Primary Colors
+$red: hsl(0, 100%, 66%);
+$blue:  hsl(249, 99%, 64%);
+$violet: hsl(278, 94%, 30%);
+
+// Neutral Colors
+$white: hsl(0, 0%, 100%);
+$light-grayish-violet: hsl(270, 3%, 87%);
+$dark-grayish-violet: hsl(279, 6%, 55%);
+$very-dark-violet: hsl(278, 68%, 11%);
+
+// Typography
+$primary-font: "Space Grotesk", sans-serif;
+
+// Font Sizes
+$sm-size: 1.4rem;
+$md-size: 1.8rem;
+$lg-size: 2.8rem;
+
+// Font Weight
+$medium: 500;
+
+// General Resets
+* {
+	box-sizing: border-box;
+}
+html {
+	font-size: 62.5%;
+}
+body {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+// Flexbox Factory
+@mixin flexbox ($direction:null, $justify:null, $align:null, $gap:null) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+	gap: $gap;
+}
+
+// Breakpoint
+@media screen and (max-width:540px) {
+	body {
+		height: auto;
+		padding: 50px 10px;
+	}
+}
