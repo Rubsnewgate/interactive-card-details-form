@@ -1,0 +1,72 @@
+@use 'guide.sass'
+
+// background
+.background
+	width: 40%
+	background-size: cover
+
+// main wrapper
+.main-wrapper
+	max-width: 800px
+
+// interactive card front part
+.front-card
+	width: 370px
+	height: 200px
+	background-size: cover
+
+.card__logo
+	height: 40px
+
+.logo-icon
+	height: 100%
+
+.card__number
+	font-size: 2.4rem
+
+// interactive card back part
+.back-card
+	align-self: center
+	width: 370px
+	height: 200px
+	background-size: cover
+
+.cvc
+	top: 44%
+
+	&-number
+		font-size: 1.6rem
+
+// form section
+.form
+	padding-left: 20px
+	gap: 10px
+
+	&__input, .date-info, .submit-btn
+		width: 85%
+
+// thanks section
+.complete-section
+	padding: 0
+	div
+		width: 100%
+		gap: 25px
+
+// breakpoint
+@media screen and (width: 1024px)
+	.back-card
+		align-self: flex-end
+
+	.complete__icon
+		width: 80px
+		height: 80px
+
+	.complete__title
+		font-size: 3.2rem
+
+	.complete__message
+		font-size: 1.8rem
+
+	.complete-btn
+		height: 50px
+		font-size: 1.8rem

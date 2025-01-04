@@ -7,20 +7,20 @@ html {
 }
 
 body {
+  display: grid;
+  place-content: center;
+  padding: 20px;
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
-}
-
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
 }
 
 @media screen and (max-width: 540px) {
   body {
-    height: auto;
-    padding: 50px 10px;
+    display: block;
+    place-content: start;
+    padding: 40px 20px;
   }
 }
 .background {
@@ -67,10 +67,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 .card__logo {
   width: 100%;
-  height: 60px;
 }
 
 .card__number {
+  margin: 0;
   align-self: flex-end;
   font-size: 2.8rem;
 }
@@ -81,12 +81,17 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 40px;
   font-size: 1.4rem;
 }
 
 .card__name {
   margin: 0;
   text-transform: uppercase;
+}
+
+.card__exp-date {
+  margin: 0;
 }
 
 .back-card {
@@ -104,7 +109,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   right: 50px;
   top: 43%;
 }
-
 .cvc-number {
   font-size: 1.8rem;
   font-weight: 500;
@@ -115,11 +119,11 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 12px;
   padding-left: 50px;
 }
 
 .form__label {
-  margin: 20px 0 10px 0;
   font-size: 1.4rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -149,10 +153,17 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   cursor: pointer;
 }
 
+.form-error {
+  display: none;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: hsl(0, 100%, 66%);
+}
+
 .date-info {
   display: flex;
   flex-direction: row;
-  justify-content: start;
   align-items: center;
   gap: 20px;
   width: 55%;
@@ -160,8 +171,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 #month, #year {
-  margin: 10px 0 0;
   width: 35%;
+  margin: 10px 0 12px;
 }
 
 .cvc-wrapper {
@@ -174,20 +185,20 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 #cvc {
   width: 100%;
+  margin: 10px 0 12px;
 }
 
-.submit-btn {
+.submit-btn, .complete-btn {
   width: 55%;
   height: 40px;
   margin-top: 20px;
   font-size: 1.4rem;
-  font-weight: 500;
   color: hsl(0, 0%, 100%);
   background-color: hsl(278, 68%, 11%);
   border: none;
   border-radius: 8px;
 }
-.submit-btn:hover {
+.submit-btn:hover, .complete-btn:hover {
   cursor: pointer;
 }
 
@@ -228,24 +239,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 }
 
 .complete-btn {
+  margin: 0;
   width: 75%;
-  height: 40px;
-  font-size: 1.4rem;
-  color: hsl(0, 0%, 100%);
-  background-color: hsl(278, 68%, 11%);
-  border: none;
-  border-radius: 8px;
-}
-.complete-btn:hover {
-  cursor: pointer;
-}
-
-.form-error {
-  display: none;
-  margin: 5px 0 0;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: hsl(0, 100%, 66%);
 }
 
 /*# sourceMappingURL=desktop.css.map */

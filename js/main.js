@@ -1,133 +1,143 @@
-// Display Sections
-const FORM_SECTION = document.querySelector('.form')
-const COMPLETE_SECTION = document.querySelector('.complete-section')
+const domElements = {
+	// display sections
+	formSection: document.querySelector('.form'),
+	formCompleteSection: document.querySelector('.complete-section'),
+	continueBtn: document.querySelector('.complete-btn'),
 
-// Fomr's User Info
-const USER_NAME = document.getElementById('user-name')
-const CARD_NUMBER = document.getElementById('card-number')
-const CARD_MONTH = document.getElementById('month')
-const CARD_YEAR = document.getElementById('year')
-const CARD_CVC = document.getElementById('cvc')
-const SUBMIT_BTN = document.querySelector('.submit-btn')
+	// form user info
+	userName: document.getElementById('user-name'),
+	cardNumber: document.getElementById('card-number'),
+	cardMonth: document.getElementById('month'),
+	cardYear: document.getElementById('year'),
+	cardCvc: document.getElementById('cvc'),
+	submintBtn: document.querySelector('.submit-btn'),
 
-// Form Error Elements
-const NAME_ERROR = document.querySelector('.name-card--error')
-const NUMBER_ERROR = document.querySelector('.number-card--error')
-const DATE_ERROR = document.querySelector('.date-card--error')
-const CVC_ERROR = document.querySelector('.cvc-card--error')
+	// form error elements
+	nameError: document.querySelector('.name-card--error'),
+	numberError: document.querySelector('.number-card--error'),
+    monthError: document.querySelector('.month-card--error'),
+    yearError: document.querySelector('.year-card--error'),
+    cvcError: document.querySelector('.cvc-card--error'),
 
-// Interactive Cards User's Info
-let userCardNumber = document.querySelector('.card__number')
-let userCardName = document.querySelector('.card__name')
-let userCardExpirationMonth = document.querySelector('.exp-month')
-let userCardExpirationYear = document.querySelector('.exp-year')
-let userCardCvc = document.querySelector('.cvc-number')
-
-// Interactive Cards And Form Logic
-let isValid
-SUBMIT_BTN.addEventListener('click', validationForm)
-
-// Card Number Format
-function formatCardNumber (number) {
-	return number.toString().replace(/\B(?=(\d{4})+(?!\d))/g, " ")
+	// interactive card's output data
+	userCardNumber: document.querySelector('.card__number'),
+	userCardName: document.querySelector('.card__name'),
+	userCardExpirationMonth: document.querySelector('.exp-month'),
+    userCardExpirationYear: document.querySelector('.exp-year'),
+    userCardCvc: document.querySelector('.cvc-number'),
 }
 
-// Validate Form Info
-function validationForm (event) {
+// validation rules for the form fields
+const validateName = (input, errorElement, requiredMessage, invalidMessage) => {
+	const value = input.value.trim()
+
+	if (!value) {
+		input.style.border = '1px solid hsl(0, 100%, 66%)'
+		errorElement.style.display = 'block'
+        errorElement.textContent = requiredMessage
+        return
+	}
+	if (!/^[a-zA-Z\s]+$/.test(value)) {
+		input.style.border = '1px solid hsl(0, 100%, 66%)'
+		errorElement.style.display = 'block'
+        errorElement.textContent = invalidMessage
+        return
+	}
+
+	input.style.border = '1px solid hsl(279, 6%, 55%)'
+	errorElement.style.display = 'none'
+	return true
+}
+
+function validateNumericInput (input, errorElement, requiredMessage, invalidMessage) {
+	const value = input.value.trim()
+
+	if (!value) {
+		input.style.border = '1px solid hsl(0, 100%, 66%)'
+		errorElement.style.display = 'block'
+        errorElement.textContent = requiredMessage
+        return
+	}
+	if (!/^\d+$/.test(value)) {
+	    input.style.border = '1px solid hsl(0, 100%, 66%)'
+		errorElement.style.display = 'block'
+        errorElement.textContent = invalidMessage
+        return
+	}
+
+	input.style.border = '1px solid hsl(279, 6%, 55%)'
+	errorElement.style.display = 'none'
+	return true
+}
+
+function validateForm (event) {
 	event.preventDefault()
-	isValid = true
 
-	if (USER_NAME.value === '') {
-		NAME_ERROR.style.display = 'block'
-		NAME_ERROR.textContent = `Can't be blank`
-		USER_NAME.style.border = '1px solid hsl(0, 100%, 66%)'
-		isValid = false
-	}
-	else {
-		NAME_ERROR.style.display = 'none'
-		USER_NAME.style.border = '1px solid hsl(279, 6%, 55%)'
-	}
+	const isValidName = validateName(
+		domElements.userName,
+		domElements.nameError,
+		'Name is required!',
+		'Invalid name!'
+	)
+	const isValidCardNumber = validateNumericInput(
+		domElements.cardNumber,
+		domElements.numberError,
+        'Card number is required!',
+        'Invalid card number!'
+	)
+	const isValidMonth = validateNumericInput(
+		domElements.cardMonth,
+		domElements.monthError,
+		'Month is required!',
+		'Invalid month!',
+	)
+	const isValidYear = validateNumericInput(
+        domElements.cardYear,
+        domElements.yearError,
+        'Year is required!',
+        'Invalid year!',
+	)
+	const isValidCvc = validateNumericInput(
+        domElements.cardCvc,
+        domElements.cvcError,
+        'CVC is required!',
+        'Invalid CVC!',
+	)
 
-	if (isNaN(parseInt(CARD_NUMBER.value))) {
-		NUMBER_ERROR.style.display = 'block'
-		NUMBER_ERROR.textContent = `Wrong format, numbers only`
-		CARD_NUMBER.style.border = '1px solid hsl(0, 100%, 66%)'
-		isValid = false
+    if (isValidName && isValidCardNumber && isValidMonth && isValidYear && isValidCvc) {
+		completeSuccessfullyForm()
 	}
-	else {
-		NUMBER_ERROR.style.display = 'none'
-		CARD_NUMBER.style.border = '1px solid hsl(279, 6%, 55%)'
-	}
-
-	if (CARD_MONTH.value === '' && CARD_YEAR.value === '') {
-		DATE_ERROR.style.display = 'block'
-		DATE_ERROR.textContent = `Can't be blank`
-		CARD_YEAR.style.border = '1px solid hsl(0, 100%, 66%)'
-		CARD_MONTH.style.border = '1px solid hsl(0, 100%, 66%)'
-		isValid = false
-	}
-	else if (CARD_MONTH.value === '') {
-		DATE_ERROR.style.display = 'block'
-		DATE_ERROR.textContent = `Can't be blank`
-		CARD_MONTH.style.border = '1px solid hsl(0, 100%, 66%)'
-		isValid = false
-	}
-	else if (CARD_YEAR.value === '') {
-		DATE_ERROR.style.display = 'block'
-		DATE_ERROR.textContent = `Can't be blank`
-		CARD_YEAR.style.border = '1px solid hsl(0, 100%, 66%)'
-		isValid = false
-	}
-	else {
-		DATE_ERROR.style.display = 'none'
-		CARD_YEAR.style.border = '1px solid hsl(279, 6%, 55%)'
-		CARD_MONTH.style.border = '1px solid hsl(279, 6%, 55%)'
-	}
-
-	if (CARD_CVC.value === '') {
-		CVC_ERROR.style.display = 'block'
-		CVC_ERROR.textContent = `Can't be blank`
-		CARD_CVC.style.border = '1px solid hsl(0, 100%, 66%)'
-		isValid = false
-	}
-	else {
-		CVC_ERROR.style.display = 'none'
-		CARD_CVC.style.border = '1px solid hsl(279, 6%, 55%)'
-	}
-	console.log(isValid)
-	completeSuccessfullyForm()
+	else return
 }
 
-// Passing The Form Values To The Cards
-CARD_NUMBER.addEventListener('input', () => {
-	let number = CARD_NUMBER.value
-	let formatNumber = formatCardNumber(number)
-	userCardNumber.textContent = formatNumber
-})
-USER_NAME.addEventListener('input', () => {
-	userCardName.textContent = USER_NAME.value
-})
-CARD_MONTH.addEventListener('input', () => {
-	userCardExpirationMonth.textContent = CARD_MONTH.value
-})
-CARD_YEAR.addEventListener('input', () => {
-	userCardExpirationYear.textContent = CARD_YEAR.value
-})
-CARD_CVC.addEventListener('input', () => {
-	userCardCvc.textContent = CARD_CVC.value
-})
-
-// Diplaying The Complete Form Section
-function completeSuccessfullyForm () {
-	if (isValid) {
-		FORM_SECTION.style.display = 'none'
-		COMPLETE_SECTION.style.display = 'flex'
-	}
+// format card number to inject it into the card dinamically
+const formatCardNumber = (number) => {
+	return number.toString().replace(/\B(?=(\d{4})+(?!\d))/g, ' ')
 }
 
-// Reload The Page
-const CONTINUE_BTN = document.querySelector('.complete-btn')
+// inject the form values to the card
+function updateCardInfo (input, targetElement, formatter = value => value) {
+	input.addEventListener('input', () => {
+		targetElement.textContent = formatter(input.value)
+	})
+}
 
-CONTINUE_BTN.addEventListener('click', () => {
+// updating the card info dynamically
+updateCardInfo(domElements.cardNumber, domElements.userCardNumber, formatCardNumber)
+updateCardInfo(domElements.userName, domElements.userCardName)
+updateCardInfo(domElements.cardMonth, domElements.userCardExpirationMonth)
+updateCardInfo(domElements.cardYear, domElements.userCardExpirationYear)
+updateCardInfo(domElements.cardCvc, domElements.userCardCvc)
+
+// displaying the complete form section
+const completeSuccessfullyForm = () => {
+	domElements.formSection.style.display = 'none'
+	domElements.formCompleteSection.style.display = 'flex'
+}
+
+domElements.submintBtn.addEventListener('click', validateForm)
+
+// reload the page
+domElements.continueBtn.addEventListener('click', () => {
 	window.location.reload()
 })

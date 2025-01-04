@@ -1,0 +1,52 @@
+// primary colors
+$red: hsl(0, 100%, 66%)
+$blue: hsl(249, 99%, 64%)
+$violet: hsl(278, 94%, 30%)
+
+// neutral colors
+$white: hsl(0, 0%, 100%)
+$light-grayish-violet: hsl(270, 3%, 87%)
+$dark-grayish-violet: hsl(279, 6%, 55%)
+$very-dark-violet: hsl(278, 68%, 11%)
+
+// typography
+$primary-font: "Space Grotesk", sans-serif
+
+// font-sizes
+$sm-size: 1.4rem
+$md-size: 1.8rem
+$lg-size: 2.8rem
+
+// font-weight
+$medium: 500
+
+// general resets
+*
+	box-sizing: border-box
+
+html
+	font-size: 62.5%
+
+body
+	display: grid
+	place-content: center
+	padding: 20px
+	position: relative
+	width: 100%
+	min-height: 100vh
+	margin: 0
+
+// mixins
+@mixin flexbox ($direction:null, $justify:null, $align:null, $gap:null)
+	display: flex
+	flex-direction: $direction
+	justify-content: $justify
+	align-items: $align
+	gap: $gap
+
+// breakpoints
+@media screen and (max-width:540px)
+	body
+		display: block
+		place-content: start
+		padding: 40px 20px
